@@ -1,6 +1,5 @@
 package ir.blacksparrow.imh_student_election.repository.permission;
 
-import ir.blacksparrow.imh_student_election.dataModel.CategoryElementEntity;
 import ir.blacksparrow.imh_student_election.dataModel.PermissionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

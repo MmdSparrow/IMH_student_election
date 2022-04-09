@@ -1,8 +1,6 @@
 package ir.blacksparrow.imh_student_election.repository.permission;
 
-import ir.blacksparrow.imh_student_election.business.dto.CategoryElementDtoChild;
 import ir.blacksparrow.imh_student_election.business.dto.PermissionDto;
-import ir.blacksparrow.imh_student_election.dataModel.CategoryElementEntity;
 import ir.blacksparrow.imh_student_election.dataModel.PermissionEntity;
 import ir.blacksparrow.imh_student_election.repository.ParentRepository;
 import org.modelmapper.ModelMapper;
