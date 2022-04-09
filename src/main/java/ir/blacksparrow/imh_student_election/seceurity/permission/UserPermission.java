@@ -6,10 +6,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UserPermission {
-    CATEGORY_READ("category:read"),
-    CATEGORY_WRITE("category:write"),
-    CATEGORY_ELEMENT_WRITE("category_element:write"),
-    CATEGORY_ELEMENT_READ("category_element:read");
+
+    CATEGORY_R("category:read"),
+    CATEGORY_W("category:write"),
+
+    CATEGORY_ELEMENT_R("category_element:read"),
+    CATEGORY_ELEMENT_W("category_element:write");
 
     private final String permission;
 
