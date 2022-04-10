@@ -11,9 +11,10 @@ public interface IRoleService {
     List<RoleDtoChild> getRoleList(int offset, int size);
 //    List<CategoryElementDtoChild> searchCategoryElement(CategoryElementDtoChild categoryElementDtoChild);
 //    List<CategoryElementDtoChild> searchCategoryElement(CategoryElementDtoChild categoryElementDtoChild, int offset, int size);
-    Optional<RoleDtoChild> getRoleById(long id);
-
+    Optional<RoleDtoChild> getRoleByTitle(String title);
     Optional<RoleDtoChild> insertAndUpdateRole(RoleDto roleDto);
+
+//    Optional<RoleDtoChild> insertAndUpdateRole(RoleDto roleDto);
 
 //    List<CategoryElementDtoChild> insertAndUpdateAllRole(List<CategoryElementDto> categoryElementDtoList);
 

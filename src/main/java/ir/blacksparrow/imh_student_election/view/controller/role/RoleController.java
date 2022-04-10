@@ -36,7 +36,7 @@ public class RoleController extends ParentController {
         TypeMap<RoleViewDto, RoleDto> propertyMapper = getModelMapper().createTypeMap(RoleViewDto.class, RoleDto.class);
         propertyMapper.addMappings(mp->{
 //            mp.map(RoleViewDto::getPermissionsId, RoleDto::setPermissionsId);
-            mp.skip(RoleDto::setPermissionsId); //todo: it must to be fix later.........................
+            mp.skip(RoleDto::setPermissionsTitle); //todo: it must to be fix later.........................
         });
     }
 
@@ -67,14 +67,14 @@ public class RoleController extends ParentController {
     }
 
     @GetMapping(
-            path = "/{id}",
+            path = "/{title}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> getRoleById(
-            @PathVariable Long id
+            @PathVariable String title
     ) {
         try {
-            Optional<RoleDtoChild> roleDtoChild = roleService.getRoleById(id);
+            Optional<RoleDtoChild> roleDtoChild = roleService.getRoleByTitle(title);
             return sendResponse(new ResponseDto(true, null, roleDtoChild), HttpStatus.OK);
         } catch (Exception e) {
             return sendResponse(new ResponseDto(false, e.getMessage(), null), HttpStatus.BAD_REQUEST);
@@ -92,9 +92,9 @@ public class RoleController extends ParentController {
     ) {
         try {
             RoleDto roleDto=new RoleDto();
-            roleDto.setPermissionsId(new ArrayList<>());
+            roleDto.setPermissionsTitle(new ArrayList<>());
             roleDto.setTitle(roleViewDto.getTitle()); //TODO: it's now without model mapper............................
-            roleDto.setPermissionsId(roleViewDto.getPermissionsId());
+            roleDto.setPermissionsTitle(roleViewDto.getPermissionsTitle());
             RoleDtoChild roleDtoChild = roleService.insertAndUpdateRole(roleDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, roleDtoChild), HttpStatus.OK);
         } catch (Exception e) {
@@ -103,13 +103,11 @@ public class RoleController extends ParentController {
     }
 
     @PutMapping(
-            path = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> editRole(
-            @Valid @RequestBody RoleViewDto roleViewDto,
-            @PathVariable Long id
+            @Valid @RequestBody RoleViewDto roleViewDto
     ) {
         try {
             RoleDto roleDto = getModelMapper().map(roleViewDto, RoleDto.class);

@@ -63,14 +63,14 @@ public class PermissionController extends ParentController {
     }
 
     @GetMapping(
-            path = "/{id}",
+            path = "/{title}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> getPermissionById(
-            @PathVariable Long id
+            @PathVariable String title
     ) {
         try {
-            Optional<PermissionDto> permissionDto = permissionService.getPermissionById(id);
+            Optional<PermissionDto> permissionDto = permissionService.getPermissionByTitle(title);
             return sendResponse(new ResponseDto(true, null, permissionDto), HttpStatus.OK);
         } catch (Exception e) {
             return sendResponse(new ResponseDto(false, e.getMessage(), null), HttpStatus.BAD_REQUEST);
@@ -126,13 +126,11 @@ public class PermissionController extends ParentController {
     }
 
     @PutMapping(
-            path = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> editPermission(
-            @Valid @RequestBody PermissionViewDto permissionViewDto,
-            @PathVariable Long id
+            @Valid @RequestBody PermissionViewDto permissionViewDto
     ) {
         try {
             PermissionDto permissionDto = getModelMapper().map(permissionViewDto, PermissionDto.class);

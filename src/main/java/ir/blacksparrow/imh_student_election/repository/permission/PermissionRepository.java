@@ -30,8 +30,8 @@ public class PermissionRepository extends ParentRepository {
         return mapList(permissionEntityList, PermissionDto.class);
     }
 
-    public Optional<PermissionDto> getById(Long id) {
-        PermissionEntity permissionEntityList = permissionRepository.getById(id);
+    public Optional<PermissionDto> getByTitle(String title) {
+        PermissionEntity permissionEntityList = permissionRepository.getByTitle(title);
         return Optional.of(getModelMapper().map(permissionEntityList, PermissionDto.class));
     }
 

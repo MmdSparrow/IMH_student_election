@@ -26,8 +26,8 @@ public class PermissionService implements IPermissionService {
     }
 
     @Override
-    public Optional<PermissionDto> getPermissionById(long id) {
-        return permissionRepository.getById(id);
+    public Optional<PermissionDto> getPermissionByTitle(String title) {
+        return permissionRepository.getByTitle(title);
     }
 
     @Override

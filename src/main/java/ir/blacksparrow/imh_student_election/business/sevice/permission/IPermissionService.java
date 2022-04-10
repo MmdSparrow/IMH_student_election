@@ -12,7 +12,7 @@ public interface IPermissionService {
     List<PermissionDto> getPermissionList(int offset, int size);
 //    List<PermissionDto> searchCategoryElement(CategoryElementDtoChild categoryElementDtoChild);
 //    List<PermissionDto> searchCategoryElement(CategoryElementDtoChild categoryElementDtoChild, int offset, int size);
-    Optional<PermissionDto> getPermissionById(long id);
+    Optional<PermissionDto> getPermissionByTitle(String title);
 
     Optional<PermissionDto> insertAndUpdatePermission(PermissionDto permissionDto);
 

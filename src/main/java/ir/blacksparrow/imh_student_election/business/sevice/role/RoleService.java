@@ -28,8 +28,8 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public Optional<RoleDtoChild> getRoleById(long id) {
-        return roleRepository.getById(id);
+    public Optional<RoleDtoChild> getRoleByTitle(String title) {
+        return roleRepository.getByTitle(title);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class RoleService implements IRoleService {
         RoleDtoChild roleDtoChild = new RoleDtoChild();
         roleDtoChild.setTitle(roleDto.getTitle());
         List<PermissionDto> permissionDtoList=new ArrayList<>();
-        for(Long id: roleDto.getPermissionsId())
-            permissionDtoList.add(permissionRepository.getById(id).orElse(null));
+        for(String title: roleDto.getPermissionsTitle())
+            permissionDtoList.add(permissionRepository.getByTitle(title).orElse(null));
         roleDtoChild.setPermissions(permissionDtoList);
         return roleRepository.insertAndUpdate(roleDtoChild);
     }

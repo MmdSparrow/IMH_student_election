@@ -37,16 +37,13 @@ public class RoleRepository extends ParentRepository {
         return mapList(roleEntityList, RoleDtoChild.class);
     }
 
-    public Optional<RoleDtoChild> getById(Long id) {
-        RoleEntity roleEntity = roleRepository.getById(id);
+    public Optional<RoleDtoChild> getByTitle(String title) {
+        RoleEntity roleEntity = roleRepository.getByTitle(title);
         return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
     }
 
     public Optional<RoleDtoChild> insertAndUpdate(RoleDtoChild roleDtoChild) {
-        System.out.println("11111111111111111111111111111111111");
         RoleEntity roleEntity = getModelMapper().map(roleDtoChild, RoleEntity.class);
-        System.out.println("22222222222222222222222222222222222");
-
         roleEntity = roleRepository.save(roleEntity);
         return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
     }
