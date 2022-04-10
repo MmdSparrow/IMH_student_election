@@ -13,5 +13,8 @@ import java.util.List;
 @Data
 public class RoleViewDto {
     @NotNull
-    private List<PermissionEntity> permissions;
+    private String title;
+
+    @NotNull
+    private List<Long> permissions;
 }

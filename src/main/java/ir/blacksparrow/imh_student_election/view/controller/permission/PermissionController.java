@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -113,7 +114,7 @@ public class PermissionController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> addPermission(
-            @RequestBody PermissionViewDto permissionViewDto
+            @Valid @RequestBody PermissionViewDto permissionViewDto
     ) {
         try {
             PermissionDto permissionDto = getModelMapper().map(permissionViewDto, PermissionDto.class);
@@ -131,7 +132,7 @@ public class PermissionController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> editPermission(
-            @RequestBody PermissionViewDto permissionViewDto,
+            @Valid @RequestBody PermissionViewDto permissionViewDto,
             @PathVariable Long id
     ) {
         try {

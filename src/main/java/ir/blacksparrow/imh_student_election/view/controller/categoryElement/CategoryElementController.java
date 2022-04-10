@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,7 +121,7 @@ public class CategoryElementController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> addCategoryElement(
-            @RequestBody CategoryElementViewDto categoryElement
+            @Valid @RequestBody CategoryElementViewDto categoryElement
     ) {
         try {
             CategoryElementDto categoryElementDto=getModelMapper().map(categoryElement, CategoryElementDto.class);
@@ -138,7 +139,7 @@ public class CategoryElementController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> editCategoryElement(
-            @RequestBody CategoryElementViewDto categoryElement,
+            @Valid @RequestBody CategoryElementViewDto categoryElement,
             @PathVariable Long id
     ) {
         try {

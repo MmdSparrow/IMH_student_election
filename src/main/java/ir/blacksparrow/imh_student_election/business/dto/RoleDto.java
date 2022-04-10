@@ -11,5 +11,6 @@ import java.util.List;
 @Data
 public class RoleDto {
     private Long id;
+    private String title;
     private List<Long> permissionsId;
 }

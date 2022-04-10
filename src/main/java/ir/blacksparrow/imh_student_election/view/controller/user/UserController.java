@@ -33,7 +33,7 @@ public class UserController extends ParentController {
     ) throws IllegalAccessException {
         UserDto userDto=getModelMapper().map(request, UserDto.class);
         userDto.setRoleDtoChild(roleService.getRoleById(request
-                .getCategoryElementId()).
+                .getRoleId()).
                 orElse(null));
         return registrationService.register(userDto);
     }

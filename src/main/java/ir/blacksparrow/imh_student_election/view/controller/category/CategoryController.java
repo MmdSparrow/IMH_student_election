@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,7 +109,7 @@ public class CategoryController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> addCategory(
-            @RequestBody CategoryViewDto category
+            @Valid @RequestBody CategoryViewDto category
     ) {
         try {
             Optional<CategoryDto> categoryDto = categoryService.insertAndUpdateCategory(getModelMapper().map(category, CategoryDto.class));
@@ -124,7 +125,7 @@ public class CategoryController extends ParentController {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResponseDto> editCategory(
-            @RequestBody CategoryViewDto category,
+            @Valid @RequestBody CategoryViewDto category,
             @PathVariable long id
     ) {
         try {

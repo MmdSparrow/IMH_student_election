@@ -4,6 +4,7 @@ import ir.blacksparrow.imh_student_election.business.dto.RoleDtoChild;
 import ir.blacksparrow.imh_student_election.dataModel.RoleEntity;
 import ir.blacksparrow.imh_student_election.repository.ParentRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class RoleRepository extends ParentRepository {
     public RoleRepository(ModelMapper modelMapper, IRoleRepository roleRepository) {
         super(modelMapper);
         this.roleRepository = roleRepository;
+
+        TypeMap<RoleDtoChild, RoleEntity> propertyMapper = getModelMapper().createTypeMap(RoleDtoChild.class, RoleEntity.class);
+        propertyMapper.addMappings(mp->{
+            mp.map(RoleDtoChild::getPermissions, RoleEntity::setPermissions);
+        });
 
     }
 
@@ -37,7 +43,10 @@ public class RoleRepository extends ParentRepository {
     }
 
     public Optional<RoleDtoChild> insertAndUpdate(RoleDtoChild roleDtoChild) {
+        System.out.println("11111111111111111111111111111111111");
         RoleEntity roleEntity = getModelMapper().map(roleDtoChild, RoleEntity.class);
+        System.out.println("22222222222222222222222222222222222");
+
         roleEntity = roleRepository.save(roleEntity);
         return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
     }
