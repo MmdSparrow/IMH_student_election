@@ -16,19 +16,7 @@ import java.util.Set;
 //        , uniqueConstraints = {@UniqueConstraint(columnNames = {"TITLE", "ROLES_ID"})}
 )
 public class PermissionEntity {
-    @SequenceGenerator(
-            name = "permission_sequence",
-            sequenceName = "permission_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "permission_sequence"
-    )
-    @Column(name = "ID")
-    private long id;
-
     @Column(name = "TITLE", unique = true)
     private String title;
 

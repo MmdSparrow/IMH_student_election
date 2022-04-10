@@ -33,7 +33,7 @@ public class UserEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_ELEMENT_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "ROLE_TITLE", referencedColumnName = "TITLE")
     private RoleEntity role;
 
     @Column(name = "LOCKED")

@@ -15,24 +15,13 @@ import java.util.Set;
 //        , uniqueConstraints = {@UniqueConstraint(columnNames = {"TITLE", "PERMISSIONS_ID"})}
 )
 public class RoleEntity {
-    @SequenceGenerator(
-            name = "role_sequence",
-            sequenceName = "role_sequence",
-            allocationSize = 1
-    )
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "role_sequence"
-    )
-    @Column(name = "ID")
-    private long id;
 
+    @Id
     @Column(name = "TITLE", unique = true)
     private String title;
 
     @ManyToMany
-    @JoinColumn(name = "PERMISSIONS_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "PERMISSIONS_TITLE", referencedColumnName = "TITLE")
     private Set<PermissionEntity> permissions;
 
 }

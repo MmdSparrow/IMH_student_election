@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class RoleDto {
-    private Long id;
     private String title;
     private List<Long> permissionsId;
 }

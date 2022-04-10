@@ -95,7 +95,6 @@ public class RoleController extends ParentController {
             roleDto.setPermissionsId(new ArrayList<>());
             roleDto.setTitle(roleViewDto.getTitle()); //TODO: it's now without model mapper............................
             roleDto.setPermissionsId(roleViewDto.getPermissionsId());
-            roleDto.setId(null); //TODO
             RoleDtoChild roleDtoChild = roleService.insertAndUpdateRole(roleDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, roleDtoChild), HttpStatus.OK);
         } catch (Exception e) {
@@ -114,7 +113,6 @@ public class RoleController extends ParentController {
     ) {
         try {
             RoleDto roleDto = getModelMapper().map(roleViewDto, RoleDto.class);
-            roleDto.setId(id); //TODO
             RoleDtoChild roleDtoChild = roleService.insertAndUpdateRole(roleDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, roleDtoChild), HttpStatus.OK);
         } catch (Exception e) {

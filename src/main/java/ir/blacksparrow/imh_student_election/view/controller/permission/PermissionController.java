@@ -118,7 +118,6 @@ public class PermissionController extends ParentController {
     ) {
         try {
             PermissionDto permissionDto = getModelMapper().map(permissionViewDto, PermissionDto.class);
-            permissionDto.setId(null); //TODO
             permissionDto = permissionService.insertAndUpdatePermission(permissionDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, permissionDto), HttpStatus.OK);
         } catch (Exception e) {
@@ -137,7 +136,6 @@ public class PermissionController extends ParentController {
     ) {
         try {
             PermissionDto permissionDto = getModelMapper().map(permissionViewDto, PermissionDto.class);
-            permissionDto.setId(id); //TODO
             permissionDto = permissionService.insertAndUpdatePermission(permissionDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, permissionDto), HttpStatus.OK);
         } catch (Exception e) {
