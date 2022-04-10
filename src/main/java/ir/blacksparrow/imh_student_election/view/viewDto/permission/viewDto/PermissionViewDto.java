@@ -14,6 +14,6 @@ import javax.validation.constraints.Pattern;
 public class PermissionViewDto {
 
     @NotNull
-    @Pattern(regexp="/[a-z]*:(write|read|delete|put)$/gm",message="title must be of the regex form: /[a-z]*:(write|read|delete|put)$/gm")
+    @Pattern(regexp="[a-z]*:(write|read|delete|put)$",message="title must be of the regex form: /[a-z]*:(write|read|delete|put)$/gm")
     private String title;
 }

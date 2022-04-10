@@ -11,12 +11,14 @@ import ir.blacksparrow.imh_student_election.view.controller.permission.validator
 import ir.blacksparrow.imh_student_election.view.viewDto.permission.viewDto.PermissionViewDto;
 import ir.blacksparrow.imh_student_election.view.viewDto.role.viewDto.RoleViewDto;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +33,11 @@ public class RoleController extends ParentController {
         super(modelMapper);
         this.roleService = roleService;
 
-//        TypeMap<PermissionViewDto, PermissionDto> propertyMapper = getModelMapper().createTypeMap(PermissionViewDto.class, PermissionDto.class);
-//        propertyMapper.addMappings(mp->{
-//            mp.map(PermissionViewDto::getCategoryId, PermissionDto::setCategoryId);
-//            mp.skip(PermissionDto::setId);
-//        });
+        TypeMap<RoleViewDto, RoleDto> propertyMapper = getModelMapper().createTypeMap(RoleViewDto.class, RoleDto.class);
+        propertyMapper.addMappings(mp->{
+//            mp.map(RoleViewDto::getPermissionsId, RoleDto::setPermissionsId);
+            mp.skip(RoleDto::setPermissionsId); //todo: it must to be fix later.........................
+        });
     }
 
     @GetMapping(
@@ -89,7 +91,10 @@ public class RoleController extends ParentController {
             @Valid @RequestBody RoleViewDto roleViewDto
     ) {
         try {
-            RoleDto roleDto = getModelMapper().map(roleViewDto, RoleDto.class);
+            RoleDto roleDto=new RoleDto();
+            roleDto.setPermissionsId(new ArrayList<>());
+            roleDto.setTitle(roleViewDto.getTitle()); //TODO: it's now without model mapper............................
+            roleDto.setPermissionsId(roleViewDto.getPermissionsId());
             roleDto.setId(null); //TODO
             RoleDtoChild roleDtoChild = roleService.insertAndUpdateRole(roleDto).orElse(null);
             return sendResponse(new ResponseDto(true, null, roleDtoChild), HttpStatus.OK);

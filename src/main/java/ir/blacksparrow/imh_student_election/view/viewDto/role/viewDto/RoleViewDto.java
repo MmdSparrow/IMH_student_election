@@ -16,5 +16,5 @@ public class RoleViewDto {
     private String title;
 
     @NotNull
-    private List<Long> permissions;
+    private List<Long> permissionsId;
 }

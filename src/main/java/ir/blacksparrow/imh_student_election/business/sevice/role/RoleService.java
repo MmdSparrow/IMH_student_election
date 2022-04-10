@@ -35,7 +35,7 @@ public class RoleService implements IRoleService {
     @Override
     public Optional<RoleDtoChild> insertAndUpdateRole(RoleDto roleDto) {
         RoleDtoChild roleDtoChild = new RoleDtoChild();
-        roleDtoChild.setId(roleDto.getId());
+        roleDtoChild.setTitle(roleDto.getTitle());
         List<PermissionDto> permissionDtoList=new ArrayList<>();
         for(Long id: roleDto.getPermissionsId())
             permissionDtoList.add(permissionRepository.getById(id).orElse(null));
