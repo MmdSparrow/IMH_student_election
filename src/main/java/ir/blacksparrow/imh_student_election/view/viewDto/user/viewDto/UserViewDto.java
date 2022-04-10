@@ -26,5 +26,5 @@ public class UserViewDto {
     private long personId;
 
     @NotNull
-    private long categoryElementId;
+    private long roleId;
 }

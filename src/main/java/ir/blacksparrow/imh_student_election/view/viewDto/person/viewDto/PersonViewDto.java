@@ -22,5 +22,6 @@ public class PersonViewDto {
 
     @NotNull
     private Date birthday;
+
     private double balance;
 }

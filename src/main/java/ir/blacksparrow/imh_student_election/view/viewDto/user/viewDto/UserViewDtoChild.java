@@ -26,5 +26,5 @@ public class UserViewDtoChild {
     private PersonViewDto person;
 
     @NotNull
-    private long categoryElementId;
+    private long roleId;
 }

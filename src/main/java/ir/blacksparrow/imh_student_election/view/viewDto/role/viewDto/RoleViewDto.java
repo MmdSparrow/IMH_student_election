@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @ToString
 @NoArgsConstructor
 @Data
 public class RoleViewDto {
+    @NotNull
     private List<PermissionEntity> permissions;
 }
