@@ -53,11 +53,11 @@ public class RegistrationService implements IRegistrationService{
         if(expireTime.isBefore(LocalDateTime.now())){
             throw new IllegalStateException("token expired");
         }
-        System.out.println(tokenConfirmationDtoChild.toString());
+//        System.out.println(tokenConfirmationDtoChild.toString());
         tokenConfirmationService.setConfirmTime(tokenConfirmationDtoChild);
         try{
             System.out.println("wtf.....................................................");
-            System.out.println(tokenConfirmationDtoChild.getUser().getEmailAddress());
+            System.out.println(tokenConfirmationDtoChild.toString());
             System.out.println("wtf.....................................................");
 
             userService.enableUser(tokenConfirmationDtoChild.getUser().getEmailAddress());

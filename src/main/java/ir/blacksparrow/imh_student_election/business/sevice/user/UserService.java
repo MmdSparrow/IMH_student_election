@@ -21,6 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Service
 public class UserService implements IUserService, UserDetailsService {
+
     private final UserRepository userRepository;
     private final PersonRepository personRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -78,10 +79,15 @@ public class UserService implements IUserService, UserDetailsService {
         UserDto userDto=userRepository
                 .findByEmail(emailAddress)
                 .orElseThrow(() -> new ServerException("email not found!"));
+        System.out.println("whyyyyyyyyyyyyyyyyyy............................................");
         userDto.setEnabled(true);
-//        System.out.println("test..........................................................................");
-//        System.out.println(userDto.toString());
-//        System.out.println("test..........................................................................");
+        System.out.println(userDto.toString());
+        System.out.println("whyyyyyyyyyyyyyyyyyy............................................");
+
+        System.out.println("set enable method....................................................");
+        System.out.println(userDto.toString());
+        System.out.println("set enable method....................................................");
+
         return userRepository.insert(userDto);
     }
 }

@@ -14,9 +14,9 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class TokenConfirmationService implements ITokenConfirmationService {
+
     private final TokenConfirmationRepository tokenConfirmationRepository;
     private final UserRepository userRepository;
-
 
     @Override
     public Optional<TokenConfirmationDtoChild> insertAndUpdateTokenConfirmation(TokenConfirmationDto tokenConfirmationDto) {
@@ -34,6 +34,7 @@ public class TokenConfirmationService implements ITokenConfirmationService {
 
     @Override
     public Optional<TokenConfirmationDtoChild> setConfirmTime(TokenConfirmationDtoChild tokenConfirmationDtoChild){
+//        System.out.println("test...........................");
         tokenConfirmationDtoChild.setConfirmTime(LocalDateTime.now());
         return tokenConfirmationRepository.insertAndUpdate(tokenConfirmationDtoChild);
     }
