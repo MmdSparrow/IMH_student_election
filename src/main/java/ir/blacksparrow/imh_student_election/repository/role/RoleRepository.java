@@ -1,6 +1,6 @@
 package ir.blacksparrow.imh_student_election.repository.role;
 
-import ir.blacksparrow.imh_student_election.business.dto.RoleDto;
+import ir.blacksparrow.imh_student_election.business.dto.RoleDtoChild;
 import ir.blacksparrow.imh_student_election.dataModel.RoleEntity;
 import ir.blacksparrow.imh_student_election.repository.ParentRepository;
 import org.modelmapper.ModelMapper;
@@ -21,30 +21,30 @@ public class RoleRepository extends ParentRepository {
 
     }
 
-    public List<RoleDto> findAll() {
+    public List<RoleDtoChild> findAll() {
         List<RoleEntity> roleEntityList = roleRepository.findAll();
-        return mapList(roleEntityList, RoleDto.class);
+        return mapList(roleEntityList, RoleDtoChild.class);
     }
 
-    public List<RoleDto> findAll(int offset, int size) {
+    public List<RoleDtoChild> findAll(int offset, int size) {
         List<RoleEntity> roleEntityList = roleRepository.findAll(offset, size);
-        return mapList(roleEntityList, RoleDto.class);
+        return mapList(roleEntityList, RoleDtoChild.class);
     }
 
-    public Optional<RoleDto> getById(Long id) {
+    public Optional<RoleDtoChild> getById(Long id) {
         RoleEntity roleEntity = roleRepository.getById(id);
-        return Optional.of(getModelMapper().map(roleEntity, RoleDto.class));
+        return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
     }
 
-    public Optional<RoleDto> insertAndUpdate(RoleDto roleDto) {
-        RoleEntity roleEntity = getModelMapper().map(roleDto, RoleEntity.class);
+    public Optional<RoleDtoChild> insertAndUpdate(RoleDtoChild roleDtoChild) {
+        RoleEntity roleEntity = getModelMapper().map(roleDtoChild, RoleEntity.class);
         roleEntity = roleRepository.save(roleEntity);
-        return Optional.of(getModelMapper().map(roleEntity, RoleDto.class));
+        return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
     }
 
-    public List<RoleDto> insertAndUpdateAll(List<RoleDto> roleDtoList) {
-        List<RoleEntity> roleEntityList = mapList(roleDtoList, RoleEntity.class);
+    public List<RoleDtoChild> insertAndUpdateAll(List<RoleDtoChild> roleDtoChildList) {
+        List<RoleEntity> roleEntityList = mapList(roleDtoChildList, RoleEntity.class);
         roleEntityList = roleRepository.saveAll(roleEntityList);
-        return mapList(roleEntityList, RoleDto.class);
+        return mapList(roleEntityList, RoleDtoChild.class);
     }
 }

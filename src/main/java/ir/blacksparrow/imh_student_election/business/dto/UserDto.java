@@ -2,11 +2,8 @@ package ir.blacksparrow.imh_student_election.business.dto;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 
 @ToString
@@ -18,7 +15,7 @@ public class UserDto implements UserDetails {
     private String emailAddress;
     private PersonDto person;
 //    private CategoryElementDtoChild categoryElement;
-    private RoleDto roleDto;
+    private RoleDtoChild roleDtoChild;
     private Set<GrantedAuthority> authorities;
     private boolean locked;
     private boolean enabled;

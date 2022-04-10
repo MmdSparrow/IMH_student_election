@@ -31,9 +31,9 @@ public class PermissionEntity {
 
     @Column(name = "TITLE", unique = true)
     private String title;
-//
-//    @ManyToMany
-//    @JoinColumn(name = "ROLES_ID", referencedColumnName = "ID", nullable = false)
-//    private Set<RoleEntity> roles;
+
+    @ManyToMany
+    @JoinColumn(name = "ROLES_ID", referencedColumnName = "ID")
+    private Set<RoleEntity> roles;
 
 }
