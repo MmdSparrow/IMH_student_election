@@ -3,6 +3,7 @@ package ir.blacksparrow.imh_student_election.business.dto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -12,18 +13,20 @@ import java.util.Set;
 @ToString
 @Getter
 @Setter
-public class UserDto implements UserDetails {
+public class UserDto implements UserDetails  {
     private String username;
     private String password;
     private String emailAddress;
     private PersonDto person;
-    private RoleDtoChild roleDtoChild;
+//    private Set<GrantedAuthority> authorities;
+    private RoleDtoChild role;
     private boolean locked;
     private boolean enabled;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleDtoChild.getTitle());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getTitle());
         return Collections.singletonList(authority);
     }
 

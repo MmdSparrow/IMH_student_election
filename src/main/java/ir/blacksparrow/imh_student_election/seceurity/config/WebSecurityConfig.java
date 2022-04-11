@@ -28,6 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder1;
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        super.configure(auth);
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("esmirk.137@gmail.com")
+//                .password(bCryptPasswordEncoder.encode("password"))
+//                .roles("ADMIN").authorities("ACCESS_TEST1","ACCESS_TEST1");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,10 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/", "index","/swagger-ui.html","/swagger-ui/**", "/user/**", "/category/**", "/category-element/**", "/permission/**", "/role/**").permitAll()
-//                .antMatchers(HttpMethod.GET,"/category/**").hasAuthority(CATEGORY_READ.getPermission())
-//                .antMatchers(HttpMethod.POST,"/category/**").hasAuthority(CATEGORY_WRITE.getPermission())
-//                .antMatchers(HttpMethod.GET,"/category-element/**").hasAuthority(CATEGORY_ELEMENT_READ.getPermission())
-//                .antMatchers(HttpMethod.POST,"/category-element/**").hasAuthority(CATEGORY_ELEMENT_WRITE.getPermission())
+//                .antMatchers("/category/**").hasRole(admin.name())
+//                .antMatchers(HttpMethod.GET,"/category/**").hasAuthority("ACCESS_TEST1")
+//                .antMatchers(HttpMethod.POST,"/category/**").hasAuthority("ACCESS_TEST1")
+//                .antMatchers(HttpMethod.GET,"/category-element/**").hasAuthority("ACCESS_TEST1")
+//                .antMatchers(HttpMethod.POST,"/category-element/**").hasAuthority("ACCESS_TEST1")
 //                .antMatchers("/category-element/**").hasAuthority(admin.name())
 //                .antMatchers("/category/**").hasRole()
                 .antMatchers("/", "index","/swagger-ui.html","/swagger-ui/**", "/user/**").permitAll()
@@ -55,10 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .formLogin();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
-    }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){

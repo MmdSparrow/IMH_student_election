@@ -32,7 +32,7 @@ public class UserController extends ParentController {
             @Valid @RequestBody UserViewDtoChild request
     ) throws IllegalAccessException {
         UserDto userDto=getModelMapper().map(request, UserDto.class);
-        userDto.setRoleDtoChild(roleService.getRoleByTitle(request
+        userDto.setRole(roleService.getRoleByTitle(request
                 .getRoleTitle()).
                 orElse(null));
         return registrationService.register(userDto);

@@ -37,7 +37,7 @@ public class UserRepository extends ParentRepository {
         if(userEntityList!= null && userEntityList.size()!=0){
             userEntity=userRepository.findTopByOrderByEmailAddress(emailAddress).get(0);
             userDto= getModelMapper().map(userEntity, UserDto.class);
-            userDto.setRoleDtoChild(getModelMapper().map(userEntity.getRole(), RoleDtoChild.class));
+            userDto.setRole(getModelMapper().map(userEntity.getRole(), RoleDtoChild.class));
         }
         return (userEntityList== null || userEntityList.size()==0) ? Optional.empty(): Optional.of(userDto);
     }

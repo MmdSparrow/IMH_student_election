@@ -44,7 +44,7 @@ public class TokenConfirmationRepository extends ParentRepository {
         List<PermissionEntity> permissionDtoList = new ArrayList<>(tokenConfirmationEntity.getUser().getRole().getPermissions());
 
         roleDtoChild.setPermissions(mapList(permissionDtoList,PermissionDto.class));
-        tokenConfirmationDtoChild.getUser().setRoleDtoChild(roleDtoChild);
+        tokenConfirmationDtoChild.getUser().setRole(roleDtoChild);
         System.out.println(tokenConfirmationDtoChild.toString());
         System.out.println("final.........................................");
 
