@@ -23,5 +23,4 @@ public class RoleEntity {
     @ManyToMany
     @JoinColumn(name = "PERMISSIONS_TITLE", referencedColumnName = "TITLE")
     private Set<PermissionEntity> permissions;
-
 }

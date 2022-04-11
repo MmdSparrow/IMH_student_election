@@ -29,7 +29,7 @@ public class RoleService implements IRoleService {
 
     @Override
     public Optional<RoleDtoChild> getRoleByTitle(String title) {
-        return roleRepository.getByTitle(title);
+        return Optional.of(roleRepository.getByTitle(title));
     }
 
     @Override

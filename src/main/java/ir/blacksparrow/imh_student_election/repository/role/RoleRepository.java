@@ -37,9 +37,9 @@ public class RoleRepository extends ParentRepository {
         return mapList(roleEntityList, RoleDtoChild.class);
     }
 
-    public Optional<RoleDtoChild> getByTitle(String title) {
+    public RoleDtoChild getByTitle(String title) {
         RoleEntity roleEntity = roleRepository.getByTitle(title);
-        return Optional.of(getModelMapper().map(roleEntity, RoleDtoChild.class));
+        return getModelMapper().map(roleEntity, RoleDtoChild.class);
     }
 
     public Optional<RoleDtoChild> insertAndUpdate(RoleDtoChild roleDtoChild) {

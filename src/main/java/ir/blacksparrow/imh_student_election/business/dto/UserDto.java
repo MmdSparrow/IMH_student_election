@@ -24,6 +24,7 @@ public class UserDto implements UserDetails  {
     private boolean enabled;
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getTitle());
