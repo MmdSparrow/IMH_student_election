@@ -1,5 +1,6 @@
 package ir.blacksparrow.imh_student_election.repository.user;
 
+import ir.blacksparrow.imh_student_election.business.dto.RoleDtoChild;
 import ir.blacksparrow.imh_student_election.business.dto.UserDto;
 import ir.blacksparrow.imh_student_election.dataModel.UserEntity;
 import ir.blacksparrow.imh_student_election.repository.ParentRepository;
@@ -31,7 +32,14 @@ public class UserRepository extends ParentRepository {
 
     public Optional<UserDto> findByEmail(String emailAddress){
         List<UserEntity> userEntityList=userRepository.findTopByOrderByEmailAddress(emailAddress);
-        return (userEntityList== null || userEntityList.size()==0) ? Optional.empty(): Optional.of(getModelMapper().map(userRepository.findTopByOrderByEmailAddress(emailAddress).get(0), UserDto.class));
+        UserEntity userEntity;
+        UserDto userDto=null;
+        if(userEntityList!= null && userEntityList.size()!=0){
+            userEntity=userRepository.findTopByOrderByEmailAddress(emailAddress).get(0);
+            userDto= getModelMapper().map(userEntity, UserDto.class);
+            userDto.setRoleDtoChild(getModelMapper().map(userEntity.getRole(), RoleDtoChild.class));
+        }
+        return (userEntityList== null || userEntityList.size()==0) ? Optional.empty(): Optional.of(userDto);
     }
 
     public Optional<UserDto> findByUsername(String username){
