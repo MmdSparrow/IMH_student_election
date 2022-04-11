@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
-                .antMatchers("/", "index","/swagger-ui.html","/swagger-ui/**", "/user/**", "/category/**", "/category-element/**", "/permission/**", "/role/**").permitAll()
+//                .antMatchers("/", "index","/swagger-ui.html","/swagger-ui/**", "/user/**", "/category/**", "/category-element/**", "/permission/**", "/role/**").permitAll()
                 .antMatchers("/category/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/category/**").hasAuthority("category:read")
                 .antMatchers(HttpMethod.POST,"/category/**").hasAuthority("category:write")
